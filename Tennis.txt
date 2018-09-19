@@ -1,0 +1,133 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+class player{
+    
+    public:
+    string name="";
+    int gamesWon=0;
+    int setsWon=0;
+    int pointsWon=0;
+    
+    void setName(string n){
+       name= n;
+    }
+    string getName(){
+        return name;
+    }
+    
+    
+    void setgamesWon(int games){
+        gamesWon= games;
+    }
+    int getgamesWon(){
+        return gamesWon;
+    }
+    
+    void setsetsWon(int sets){
+        setsWon= sets;
+    }
+    int getsetsWon(){
+        return setsWon;
+    }
+    
+    void setpointsWon(int points){
+        pointsWon= points;
+    }
+    int getpointsWon(){
+        return pointsWon;
+    }
+};
+player A,B;
+
+void playgame(string s){
+    
+    int pointsA,pointsB,setsA,setsB,gamesA,gamesB;
+    for(int i=0;i<s.length();i++){
+        
+        pointsA=A.getpointsWon();
+        pointsB=B.getpointsWon();
+        
+        if(s[i]=='A')
+        {
+            if(pointsA==0)
+            A.setpointsWon(15);
+            if(pointsA==15)
+            A.setpointsWon(30);
+            if(pointsA==30)
+            A.setpointsWon(40);
+            if(pointsA==40)
+            A.setpointsWon(45);
+            
+            if(pointsA==45)
+            {
+                 A.setgamesWon(A.getgamesWon()+1);
+                  A.setpointsWon(0);
+                  B.setpointsWon(0);
+            }
+        }
+        
+        if(s[i]=='B')
+        {
+            if(pointsB==0)
+            B.setpointsWon(15);
+            if(pointsB==15)
+            B.setpointsWon(30);
+            if(pointsB==30)
+            B.setpointsWon(40);
+            if(pointsB==40)
+            B.setpointsWon(45);
+            
+            if(pointsB==45)
+            {
+                 B.setgamesWon(B.getgamesWon()+1);
+                 A.setpointsWon(0);
+                 B.setpointsWon(0);
+            }
+            
+        }
+        
+         pointsA=A.getpointsWon();
+        pointsB=B.getpointsWon();
+        
+        
+        if( (pointsA==45 && pointsB==0) )
+        {
+            A.setgamesWon(A.getgamesWon()+1);
+            A.setpointsWon(0);
+            B.setpointsWon(0);
+        }
+            
+        
+         if( (pointsB==45 && pointsA==0) )
+        {B.setgamesWon(B.getgamesWon()+1);
+         A.setpointsWon(0);
+         B.setpointsWon(0);
+        }
+        
+    }
+    
+    
+}
+void getScore()
+{
+    cout<<"player: "<<A.getName()<<" "<<B.getName()<<endl;
+    cout<<"sets: "<<A.getsetsWon()<<" "<<B.getsetsWon()<<endl;
+    cout<<"games: "<<A.getgamesWon()<<" "<<B.getgamesWon()<<endl;
+    cout<<"points: "<<A.getpointsWon()<<" "<<B.getpointsWon()<<endl;
+}
+
+  
+int main() {
+
+   string s;
+   cin>>s;
+   
+   
+   A.setName("A");
+   B.setName("B");
+   playgame(s);
+   getScore();
+
+ return 0;
+}
